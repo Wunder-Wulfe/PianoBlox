@@ -8,15 +8,6 @@ from wrappedtuple import WrappedTuple
 import sys
 import os
 
-WHITE_KEY = 0
-BLACK_KEY = 1
-NOTE_PATTERN = WrappedTuple(
-    (
-        WHITE_KEY, BLACK_KEY, WHITE_KEY, WHITE_KEY,
-        BLACK_KEY, WHITE_KEY, BLACK_KEY, WHITE_KEY,
-        WHITE_KEY, BLACK_KEY, WHITE_KEY, BLACK_KEY
-    )
-)
 
 """
     Keyboard layout pattern established for translating MIDI events into virtual key presses
@@ -79,6 +70,7 @@ NOTE_OFF = 128
 
 pyautogui.PAUSE = 0
 
+
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS # exists when using PyInstaller
@@ -86,6 +78,7 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
 
 class App(tk.Tk):
     def __init__(self):
@@ -210,14 +203,12 @@ class App(tk.Tk):
         if status == NOTE_ON or status == NOTE_OFF:
             self.handle_note(note, velo, status == NOTE_ON)
 
-
     def __del__(self):
         self.clear_presses()
         del self.midi_handler
 
     def update_idletasks(self):
         super().update_idletasks()
-
 
 
 def run_app():

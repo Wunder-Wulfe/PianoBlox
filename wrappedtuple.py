@@ -5,6 +5,7 @@ from typing_extensions import TypeVarTuple, Unpack
 Ts = TypeVarTuple('Ts')
 # N = TypeVar("N", bound=Literal[int])
 
+
 class WrappedTuple(Tuple[Unpack[Ts]]):
     """
     Implements a wrapped tuple type, supporting infinite indexing
