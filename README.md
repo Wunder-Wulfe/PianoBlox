@@ -6,6 +6,8 @@
 
 This is a simple program designed for interfacing with video-games and engines that do not support native MIDI input.
 
+For more information regarding how to use or modify this program, please refer to the [Piano Blox Wiki](https://github.com/Wunder-Wulfe/PianoBlox/wiki)
+
 PianoBlox functions sort of like a hotkey program, and will relay MIDI data as key presses to the software.
 
 There are plans to make the key configuration something that is easy to switch, edit, and replace at run-time, so that the keys may be re-mapped in order to avoid conflicts in other software.
