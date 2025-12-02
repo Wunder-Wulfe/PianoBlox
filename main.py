@@ -16,8 +16,36 @@ NOTE_PATTERN = WrappedTuple(
     )
 )
 
+"""
+    Keyboard layout pattern established for translating MIDI events into virtual key presses
+    
+    'left', 'right', 'up', and 'down' represent the Arrow keys
+    '0' - '9' are the numeric keys
+    'num0' - 'num9', 'add', 'subtract', 'multiply', 'decimal', and 'divide' are keys found on the numpad
+    
+    An equivalent layout for Luau tables (can copy and paste):
+    
+        local KC = Enum.KeyCode
+        
+        local KEY_PATTERN: {Enum.KeyCode} = table.freeze {
+            KC.Up, KC.Down, 
+            KC.Zero, KC.One, KC.Two, KC.Three, KC.Four, 
+            KC.Five, KC.Six, KC.Seven, KC.Eight, KC.Nine, 
+            KC.Q, KC.W, KC.E, KC.R,
+            KC.T, KC.Y, KC.U, KC.P, KC.A,
+            KC.S, KC.D, KC.F, KC.G, KC.H,
+            KC.J, KC.K, KC.L, KC.Z, KC.X,
+            KC.C, KC.V, KC.B, KC.N, KC.M,
+            KC.KeypadZero, KC.KeypadOne, KC.KeypadTwo, KC.KeypadThree, KC.KeypadFour, 
+            KC.KeypadFive, KC.KeypadSix, KC.KeypadSeven, KC.KeypadEight, KC.KeypadNine,
+            KC.KeypadPlus, KC.KeypadMinus, KC.KeypadMultiply, 
+            KC.KeypadDivide, KC.Comma, KC.KeypadPeriod, KC.Semicolon, 
+            KC.Quote, KC.LeftBracket, KC.RightBracket, 
+            KC.Minus, KC.Equals
+        }
+"""
 KEY_PATTERN = (
-    'up', 'down', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+    'up', 'down', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
     'q', 'w', 'e', 'r', 't', 'y', 'u', 'p',
     'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
     'z', 'x', 'c', 'v', 'b', 'n', 'm',
