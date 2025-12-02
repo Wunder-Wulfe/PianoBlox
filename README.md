@@ -23,3 +23,7 @@ You can inspect the main files in order to understand the key order and mapping.
 
 The difference between this system and the common one is that this allows for the program to tell how long the note has been held down. 
 There are some plans to add support for note velocity, pitch bends, and modulation inputs through virtual controller inputs.
+
+-------
+
+Since the 'keyboard' layout for this program is unique, it is unlikely to function with existing Roblox Piano games, unless they provide support for the keyboard layout specified in this software.
