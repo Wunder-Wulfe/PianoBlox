@@ -55,6 +55,11 @@ KEY_PATTERN = (
     ',', 'decimal', ';', '\'', '[', ']', '-', '='
 )
 
+# Calibration key is required in order to assign the 'Middle C' note
+# This value is 0 index based
+# In Roblox, make sure that your calibration value is aligned!!!
+KEY_CALIBRATION = 28
+
 # SHARP♯
 # FLAT♭
 NOTE_NAMES = WrappedTuple(
@@ -66,9 +71,6 @@ NOTE_NAMES = WrappedTuple(
 
 def get_note_name(note: int) -> str:
     return f"{NOTE_NAMES[note]} {note // 12}"
-
-KEY_COUNT = 32
-KEY_CALIBRATION = 28
 
 NOTE_ON = 144
 NOTE_OFF = 128
