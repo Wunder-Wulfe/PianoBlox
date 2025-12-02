@@ -5,6 +5,8 @@ from tkinter import ttk
 import asyncio
 import multiprocessing as mp
 from wrappedtuple import WrappedTuple
+import sys
+import os
 
 WHITE_KEY = 0
 BLACK_KEY = 1
@@ -77,9 +79,18 @@ NOTE_OFF = 128
 
 pyautogui.PAUSE = 0
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS # exists when using PyInstaller
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
+        self.iconbitmap(default=resource_path("icon.ico"))
         self.title('Piano Blox')
         self.geometry('800x400')
         self.resizable(True, True)
