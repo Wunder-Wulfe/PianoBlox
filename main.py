@@ -27,6 +27,18 @@ KEY_PATTERN = (
     ',', 'decimal', ';', '\'', '[', ']', '-', '='
 )
 
+# SHARP♯
+# FLAT♭
+NOTE_NAMES = WrappedTuple(
+    (
+        'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E',
+        'F', 'F♯/G♭', 'G', 'G♯/A♭', 'A', 'A♯/B♭', 'B'
+    )
+)
+
+def get_note_name(note: int) -> str:
+    return f"{NOTE_NAMES[note]} {note // 12}"
+
 KEY_COUNT = 32
 KEY_CALIBRATION = 28
 
@@ -116,7 +128,7 @@ class App(tk.Tk):
 
     def update_text(self):
         self.keys_list.config(text=' | '.join(k.upper() for k in self.pressed))
-        # self.note_list.config(text=' | '.join(KEY_NAMES[k + 3] for k in sorted(self.notes)))
+        self.note_list.config(text=' | '.join(get_note_name(k) for k in sorted(self.notes)))
         self.octave_label.config(text=f'Octave: {self.octave.get()}')
 
     def handle_note(self, note:int, velo:int, on:bool):
