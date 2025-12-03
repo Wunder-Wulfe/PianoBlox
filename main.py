@@ -3,10 +3,10 @@ import rtmidi
 import tkinter as tk
 from tkinter import ttk
 import asyncio
-import multiprocessing as mp
+from multiprocessing import Process, Manager, freeze_support as mp_freeze_support
 from wrappedtuple import WrappedTuple
 import sys
-import os
+from os import path as os_path
 
 
 """
@@ -80,9 +80,9 @@ def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS # exists when using PyInstaller
     except Exception:
-        base_path = os.path.abspath(".")
+        base_path = os_path.abspath(".")
 
-    return os.path.join(base_path, relative_path)
+    return os_path.join(base_path, relative_path)
 
 
 class App(tk.Tk):
@@ -240,7 +240,7 @@ async def to_thread(f, *args):
 def start_parallel(f, *args, **kwargs):
     global PROCESSES
 
-    p = mp.Process(target=f, args=args, kwargs=kwargs)
+    p = Process(target=f, args=args, kwargs=kwargs)
 
     PROCESSES.add(to_thread(p.join))
 
@@ -256,11 +256,11 @@ async def end_parallel():
 
 
 async def main():
-    with mp.Manager() as manager:
+    with Manager() as manager:
         start_parallel(run_app)
         await end_parallel()
 
 
 if __name__ == '__main__':
-    mp.freeze_support()
+    mp_freeze_support()
     asyncio.run(main())
