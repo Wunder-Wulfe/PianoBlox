@@ -48,6 +48,8 @@ KEY_PATTERN = (
     ',', 'decimal', ';', '\'', '[', ']', '-', '='
 )
 
+KEY_LOOKUP = {key: index for index, key in enumerate(KEY_PATTERN)}
+
 # Calibration key is required in order to assign the 'Middle C' note
 # This value is 0 index based
 # In Roblox, make sure that your calibration value is aligned!!!
@@ -67,6 +69,9 @@ def get_note_name(note: int) -> str:
 
 NOTE_ON = 144
 NOTE_OFF = 128
+
+def key_sorter(k1: str) -> int:
+    return KEY_LOOKUP[k1] if k1 in KEY_LOOKUP else len(k1)
 
 pyautogui.PAUSE = 0
 
@@ -161,8 +166,16 @@ class App(tk.Tk):
         self.update_text()
 
     def update_text(self):
-        self.keys_list.config(text=' | '.join(k.upper() for k in self.pressed))
-        self.note_list.config(text=' | '.join(get_note_name(k) for k in sorted(self.notes)))
+        self.keys_list.config(
+            text=' | '.join(
+                k.upper() for k in sorted(self.pressed, key=key_sorter)
+            )
+        )
+        self.note_list.config(
+            text=' | '.join(
+                get_note_name(k) for k in sorted(self.notes)
+            )
+        )
         self.octave_label.config(text=f'Octave: {self.octave.get()}')
 
     def handle_note(self, note:int, velo:int, on:bool):
